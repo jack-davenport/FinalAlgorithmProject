@@ -4,9 +4,12 @@
 #include <cstring>
 #include <fstream>
 #include <ctime>
+#include <math.h>
 using namespace std;
+
 vector<int> trivial(string text, string pattern);
 vector<int> rabinKarpSearch(string text, string pattern, int primeNumber);
+
 int main(int argc, char* argv[])
 {
     std::cout << "Hello, World!" << std::endl;
@@ -24,7 +27,7 @@ int main(int argc, char* argv[])
                  (std::istreambuf_iterator<char>()    ) );
     std::clock_t start;
     start = std::clock();
-    vector<int> triv = trivial(text, "the");
+    vector<int> triv = trivial(text, "he");
     std::cout << "Time: " << (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000) << " ms" << std::endl;
     char* cstr = new char[text.length() + 1];
     strcpy(cstr, text.c_str());
@@ -41,6 +44,16 @@ int main(int argc, char* argv[])
 //        input.getline(temp, 2000);
 //    }
 
+    bool pls  = true;
+    for(int i = 0; i < RK.size(); i++)
+    {
+        if(RK.at(i) != triv.at(i))
+        {
+            pls = false;
+            break;
+        }
+    }
+    cout << pls << endl;
     return 0;
 }
 
@@ -52,7 +65,7 @@ vector<int> trivial(string text, string pattern)
     {
         if(text.substr(i, patLength) == pattern)
         {
-            cout << "Poggers" << endl;
+
             indexOfMatches.push_back(i);
         }
     }
@@ -67,11 +80,7 @@ vector<int> rabinKarpSearch(string text, string pattern, int primeNumber)
     int pHashVal = 0;
     int subStringHashVal = 0;
     int hash = 1;
-
-    for (int i = 0; i < pattern.length() -1; i++)
-    {
-        hash = (hash *chars) % primeNumber;
-    }
+    hash = static_cast<int>(pow(chars, pattern.length() - 1)) % primeNumber;
 
     for(int i = 0; i < pattern.length(); i++)
     {
