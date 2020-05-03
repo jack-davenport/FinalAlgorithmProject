@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cygdrive/c/Users/jackd/Documents/FinalAlgorithmProject/StringMatching/main.cpp
+iostream
+-
+string
+-
+vector
+-
+cstring
+-
+fstream
+-
+ctime
+-
+
